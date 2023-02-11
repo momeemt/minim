@@ -1,7 +1,6 @@
 import exprs
 
 import std/tables
-import std/strformat
 
 type
   UnknownBinaryOperatorError = object of ValueError
@@ -33,7 +32,7 @@ proc evaluate* (expr: Expr, variables: var Table[string, int]): int =
   of ekInt:
     result = expr.value
   of ekSeq:
-    for body in expr.bodies:
+    for body in expr.seqBodies:
       result = evaluate(body, variables)
   of ekAssignment:
     variables[expr.assignmentName] = evaluate(expr.expr, variables)
@@ -41,10 +40,19 @@ proc evaluate* (expr: Expr, variables: var Table[string, int]): int =
   of ekIdent:
     result = variables[expr.identName]
   of ekIf:
-    if expr.condition.evaluate(variables) != 0:
-      result = evaluate(expr.thenClause, variables)
+    if expr.ifCondition.evaluate(variables) != 0:
+      result = evaluate(expr.ifThenClause, variables)
     else:
-      result = evaluate(expr.elseClause, variables)
+      result = evaluate(expr.ifElseClause, variables)
+  of ekWhile:
+    while expr.whileCondition.evaluate(variables) != 0:
+      for body in expr.whileBodies:
+        discard evaluate(body, variables)
+    # todo: return none[int]()
+    result = -1 
+  of ekProgram:
+    for program in expr.programs:
+      result = evaluate(program, variables)
 
 proc evaluate* (expr: Expr): int =
   var variables = initTable[string, int]()

@@ -38,3 +38,9 @@ proc tSeq* (bodies: varargs[Expr]): Expr =
 
 proc tIf* (condition, then, els: Expr): Expr =
   result = exprIf(condition, then, els)
+
+proc tWhile* (condition: Expr, bodies: varargs[Expr]): Expr =
+  result = exprWhile(condition, @bodies)
+
+proc tProgram* (bodies: varargs[Expr]): Expr =
+  result = exprSeq(@bodies)

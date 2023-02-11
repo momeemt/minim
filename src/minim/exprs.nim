@@ -6,6 +6,8 @@ type
     ekIdent
     ekSeq
     ekIf
+    ekWhile
+    ekProgram
 
   Expr* = ref ExprObj
 
@@ -23,11 +25,16 @@ type
     of ekIdent:
       identName*: string
     of ekSeq:
-      bodies*: seq[Expr]
+      seqBodies*: seq[Expr]
     of ekIf:
-      condition*: Expr
-      thenClause*: Expr
-      elseClause*: Expr
+      ifCondition*: Expr
+      ifThenClause*: Expr
+      ifElseClause*: Expr
+    of ekWhile:
+      whileCondition*: Expr
+      whileBodies*: seq[Expr]
+    of ekProgram:
+      programs*: seq[Expr]
 
 proc exprBinary* (op: string, lhs, rhs: Expr): Expr =
   result = Expr(kind: ekBinary)
@@ -50,10 +57,19 @@ proc exprIdent* (name: string): Expr =
 
 proc exprSeq* (bodies: seq[Expr]): Expr =
   result = Expr(kind: ekSeq)
-  result[].bodies = bodies
+  result[].seqBodies = bodies
 
 proc exprIf* (condition, then, els: Expr): Expr =
   result = Expr(kind: ekIf)
-  result[].condition = condition
-  result[].thenClause = then
-  result[].elseClause = els
+  result[].ifCondition = condition
+  result[].ifThenClause = then
+  result[].ifElseClause = els
+
+proc exprWhile* (condition: Expr, bodies: seq[Expr]): Expr =
+  result = Expr(kind: ekWhile)
+  result[].whileCondition = condition
+  result[].whileBodies = bodies
+
+proc exprProgram* (programs: seq[Expr]): Expr =
+  result = Expr(kind: ekProgram)
+  result[].programs = programs
