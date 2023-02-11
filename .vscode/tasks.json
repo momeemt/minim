@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "command": "nim",
+    "args": [
+        "c",
+        "-r",
+        "${file}"
+    ],
+    "options": {
+        "cwd": "${workspaceRoot}"
+    },
+}

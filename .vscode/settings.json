@@ -1,0 +1,8 @@
+{
+    "nim.project": [],
+    "nim.test-project": "",
+    "nim.buildOnSave": true,
+    "nim.buildCommand": "c",
+    "nim.lintOnSave": true,
+    "nim.logNimsuggest": false
+}
