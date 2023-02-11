@@ -18,3 +18,20 @@ suite "test seq":
       )),
       tId("b")
     ).evaluate() == 101
+
+suite "test while":
+  test """
+    i = 0;
+    while(i < 10) {
+        i = i + 1;
+    };
+    i
+  """:
+    check tProgram(
+      tAssign("i", tInt(0)),
+      tWhile(
+        tLt(tId("i"), tInt(10)),
+        tAssign("i", tAdd(tId("i"), tInt(1))),
+      ),
+      tId("i")
+    ).evaluate() == 10
