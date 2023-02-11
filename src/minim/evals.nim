@@ -5,7 +5,7 @@ import std/tables
 type
   UnknownBinaryOperatorError = object of ValueError
 
-proc evaluate* (expr: Expr, variables: var Table[string, int]): int =
+proc evaluate* (expr: AST, variables: var Table[string, int]): int =
   case expr.kind
   of ekBinary:
     case expr.op
@@ -54,6 +54,6 @@ proc evaluate* (expr: Expr, variables: var Table[string, int]): int =
     for program in expr.programs:
       result = evaluate(program, variables)
 
-proc evaluate* (expr: Expr): int =
+proc evaluate* (expr: AST): int =
   var variables = initTable[string, int]()
   result = evaluate(expr, variables)

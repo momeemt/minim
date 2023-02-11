@@ -1,5 +1,5 @@
 type
-  ExprKind* = enum
+  ASTKind* = enum
     ekBinary
     ekInt
     ekAssignment
@@ -9,67 +9,67 @@ type
     ekWhile
     ekProgram
 
-  Expr* = ref ExprObj
+  AST* = ref ASTObj
 
-  ExprObj* = object
-    case kind*: ExprKind
+  ASTObj* = object
+    case kind*: ASTKind
     of ekBinary:
       op*: string
-      lhs*: Expr
-      rhs*: Expr
+      lhs*: AST
+      rhs*: AST
     of ekInt:
       value*: int
     of ekAssignment:
       assignmentName*: string
-      expr*: Expr
+      expr*: AST
     of ekIdent:
       identName*: string
     of ekSeq:
-      seqBodies*: seq[Expr]
+      seqBodies*: seq[AST]
     of ekIf:
-      ifCondition*: Expr
-      ifThenClause*: Expr
-      ifElseClause*: Expr
+      ifCondition*: AST
+      ifThenClause*: AST
+      ifElseClause*: AST
     of ekWhile:
-      whileCondition*: Expr
-      whileBodies*: seq[Expr]
+      whileCondition*: AST
+      whileBodies*: seq[AST]
     of ekProgram:
-      programs*: seq[Expr]
+      programs*: seq[AST]
 
-proc exprBinary* (op: string, lhs, rhs: Expr): Expr =
-  result = Expr(kind: ekBinary)
+proc exprBinary* (op: string, lhs, rhs: AST): AST =
+  result = AST(kind: ekBinary)
   result[].op = op
   result[].lhs = lhs
   result[].rhs = rhs
 
-proc exprInt* (value: int): Expr =
-  result = Expr(kind: ekInt)
+proc exprInt* (value: int): AST =
+  result = AST(kind: ekInt)
   result[].value = value
 
-proc exprAssignment* (name: string, expr: Expr): Expr =
-  result = Expr(kind: ekAssignment)
+proc exprAssignment* (name: string, expr: AST): AST =
+  result = AST(kind: ekAssignment)
   result[].assignmentName = name
   result[].expr = expr
 
-proc exprIdent* (name: string): Expr =
-  result = Expr(kind: ekIdent)
+proc exprIdent* (name: string): AST =
+  result = AST(kind: ekIdent)
   result[].identName = name
 
-proc exprSeq* (bodies: seq[Expr]): Expr =
-  result = Expr(kind: ekSeq)
+proc exprSeq* (bodies: seq[AST]): AST =
+  result = AST(kind: ekSeq)
   result[].seqBodies = bodies
 
-proc exprIf* (condition, then, els: Expr): Expr =
-  result = Expr(kind: ekIf)
+proc exprIf* (condition, then, els: AST): AST =
+  result = AST(kind: ekIf)
   result[].ifCondition = condition
   result[].ifThenClause = then
   result[].ifElseClause = els
 
-proc exprWhile* (condition: Expr, bodies: seq[Expr]): Expr =
-  result = Expr(kind: ekWhile)
+proc exprWhile* (condition: AST, bodies: seq[AST]): AST =
+  result = AST(kind: ekWhile)
   result[].whileCondition = condition
   result[].whileBodies = bodies
 
-proc exprProgram* (programs: seq[Expr]): Expr =
-  result = Expr(kind: ekProgram)
+proc exprProgram* (programs: seq[AST]): AST =
+  result = AST(kind: ekProgram)
   result[].programs = programs

@@ -1,46 +1,46 @@
 import exprs
 
-proc tAdd* (a, b: Expr): Expr =
+proc tAdd* (a, b: AST): AST =
   result = exprBinary("+", a, b)
 
-proc tSub* (a, b: Expr): Expr = 
+proc tSub* (a, b: AST): AST = 
   result = exprBinary("-", a, b)
 
-proc tMul* (a, b: Expr): Expr = 
+proc tMul* (a, b: AST): AST = 
   result = exprBinary("*", a, b)
 
-proc tDiv* (a, b: Expr): Expr = 
+proc tDiv* (a, b: AST): AST = 
   result = exprBinary("/", a, b)
 
-proc tInt* (value: int): Expr = 
+proc tInt* (value: int): AST = 
   result = exprInt(value)
 
-proc tLt* (a, b: Expr): Expr = 
+proc tLt* (a, b: AST): AST = 
   result = exprBinary("<", a, b)
 
-proc tGt* (a, b: Expr): Expr = 
+proc tGt* (a, b: AST): AST = 
   result = exprBinary(">", a, b)
 
-proc tLte* (a, b: Expr): Expr = 
+proc tLte* (a, b: AST): AST = 
   result = exprBinary("<=", a, b)
 
-proc tGte* (a, b: Expr): Expr = 
+proc tGte* (a, b: AST): AST = 
   result = exprBinary(">=", a, b)
 
-proc tAssign* (name: string, value: Expr): Expr =
+proc tAssign* (name: string, value: AST): AST =
   result = exprAssignment(name, value)
 
-proc tId* (name: string): Expr =
+proc tId* (name: string): AST =
   result = exprIdent(name)
 
-proc tSeq* (bodies: varargs[Expr]): Expr =
+proc tSeq* (bodies: varargs[AST]): AST =
   result = exprSeq(@bodies)
 
-proc tIf* (condition, then, els: Expr): Expr =
+proc tIf* (condition, then, els: AST): AST =
   result = exprIf(condition, then, els)
 
-proc tWhile* (condition: Expr, bodies: varargs[Expr]): Expr =
+proc tWhile* (condition: AST, bodies: varargs[AST]): AST =
   result = exprWhile(condition, @bodies)
 
-proc tProgram* (bodies: varargs[Expr]): Expr =
+proc tProgram* (bodies: varargs[AST]): AST =
   result = exprSeq(@bodies)
