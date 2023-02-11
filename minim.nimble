@@ -5,8 +5,8 @@ author        = "momeemt"
 description   = "A new awesome nimble package"
 license       = "Apache-2.0"
 srcDir        = "src"
+binDir        = "bin"
 bin           = @["minim"]
-
 
 # Dependencies
 
