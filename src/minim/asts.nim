@@ -9,6 +9,7 @@ type
     akWhile
     akProgram
     akFunc
+    akCall
 
   AST* = ref ASTObj
 
@@ -38,8 +39,11 @@ type
       programs*: seq[AST]
     of akFunc:
       funcName*: string
-      funcParams*: seq[AST]
-      funcBody*: seq[AST]
+      funcParams*: seq[string]
+      funcBody*: AST
+    of akCall:
+      callName*: string
+      callArgs*: seq[AST]
 
 proc astBinary* (op: string, lhs, rhs: AST): AST =
   result = AST(kind: akBinary)
@@ -79,8 +83,13 @@ proc astProgram* (programs: seq[AST]): AST =
   result = AST(kind: akProgram)
   result[].programs = programs
 
-proc astFunc* (name: string, params, body: seq[AST]): AST =
+proc astFunc* (name: string, params: seq[string], body: AST): AST =
   result = AST(kind: akFunc)
   result[].funcName = name
   result[].funcParams = params
   result[].funcBody = body
+
+proc astCall* (name: string, args: seq[AST]): AST =
+  result = AST(kind: akCall)
+  result[].callName = name
+  result[].callArgs = args

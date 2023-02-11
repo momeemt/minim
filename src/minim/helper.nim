@@ -44,3 +44,9 @@ proc tWhile* (condition: AST, bodies: varargs[AST]): AST =
 
 proc tProgram* (bodies: varargs[AST]): AST =
   result = astSeq(@bodies)
+
+proc tFunc* (name: string, params: seq[string], body: AST): AST =
+  result = astFunc(name, params, body)
+
+proc tCall* (name: string, args: varargs[AST]): AST =
+  result = astCall(name, @args)
