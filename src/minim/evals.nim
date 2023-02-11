@@ -1,11 +1,6 @@
 import asts
 
-import std/sugar
 import std/tables
-import std/sequtils
-
-type
-  UnknownBinaryOperatorError = object of ValueError
 
 proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Table[string, AST]): int =
   case ast.kind
