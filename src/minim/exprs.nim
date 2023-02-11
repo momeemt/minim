@@ -2,6 +2,9 @@ type
   ExprKind* = enum
     ekBinary
     ekInt
+    ekAssignment
+    ekIdent
+    ekSeq
 
   Expr* = ref ExprObj
 
@@ -13,6 +16,13 @@ type
       rhs*: Expr
     of ekInt:
       value*: int
+    of ekAssignment:
+      assignmentName*: string
+      expr*: Expr
+    of ekIdent:
+      identName*: string
+    of ekSeq:
+      bodies*: seq[Expr]
 
 proc exprBinary* (op: string, lhs, rhs: Expr): Expr =
   result = Expr(kind: ekBinary)
@@ -23,3 +33,16 @@ proc exprBinary* (op: string, lhs, rhs: Expr): Expr =
 proc exprInt* (value: int): Expr =
   result = Expr(kind: ekInt)
   result[].value = value
+
+proc exprAssignment* (name: string, expr: Expr): Expr =
+  result = Expr(kind: ekAssignment)
+  result[].assignmentName = name
+  result[].expr = expr
+
+proc exprIdent* (name: string): Expr =
+  result = Expr(kind: ekIdent)
+  result[].identName = name
+
+proc exprSeq* (bodies: seq[Expr]): Expr =
+  result = Expr(kind: ekSeq)
+  result[].bodies = bodies
