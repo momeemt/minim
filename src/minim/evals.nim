@@ -1,59 +1,61 @@
-import exprs
+import asts
 
 import std/tables
 
 type
   UnknownBinaryOperatorError = object of ValueError
 
-proc evaluate* (expr: AST, variables: var Table[string, int]): int =
-  case expr.kind
-  of ekBinary:
-    case expr.op
+proc evaluate* (ast: AST, variables: var Table[string, int]): int =
+  case ast.kind
+  of akBinary:
+    case ast.op
     of "+":
-      result = evaluate(expr.lhs, variables) + evaluate(expr.rhs, variables)
+      result = evaluate(ast.lhs, variables) + evaluate(ast.rhs, variables)
     of "-":
-      result = evaluate(expr.lhs, variables) - evaluate(expr.rhs, variables)
+      result = evaluate(ast.lhs, variables) - evaluate(ast.rhs, variables)
     of "*":
-      result = evaluate(expr.lhs, variables) * evaluate(expr.rhs, variables)
+      result = evaluate(ast.lhs, variables) * evaluate(ast.rhs, variables)
     of "/":
-      result = evaluate(expr.lhs, variables) div evaluate(expr.rhs, variables)
+      result = evaluate(ast.lhs, variables) div evaluate(ast.rhs, variables)
     of "<":
-      result = int(evaluate(expr.lhs, variables) < evaluate(expr.rhs, variables))
+      result = int(evaluate(ast.lhs, variables) < evaluate(ast.rhs, variables))
     of ">":
-      result = int(evaluate(expr.lhs, variables) > evaluate(expr.rhs, variables))
+      result = int(evaluate(ast.lhs, variables) > evaluate(ast.rhs, variables))
     of "<=":
-      result = int(evaluate(expr.lhs, variables) <= evaluate(expr.rhs, variables))
+      result = int(evaluate(ast.lhs, variables) <= evaluate(ast.rhs, variables))
     of ">=":
-      result = int(evaluate(expr.lhs, variables) >= evaluate(expr.rhs, variables))
+      result = int(evaluate(ast.lhs, variables) >= evaluate(ast.rhs, variables))
     of "==":
-      result = int(evaluate(expr.lhs, variables) == evaluate(expr.rhs, variables))
+      result = int(evaluate(ast.lhs, variables) == evaluate(ast.rhs, variables))
     of "!=":
-      result = int(evaluate(expr.lhs, variables) != evaluate(expr.rhs, variables))
-  of ekInt:
-    result = expr.value
-  of ekSeq:
-    for body in expr.seqBodies:
+      result = int(evaluate(ast.lhs, variables) != evaluate(ast.rhs, variables))
+  of akInt:
+    result = ast.value
+  of akSeq:
+    for body in ast.seqBodies:
       result = evaluate(body, variables)
-  of ekAssignment:
-    variables[expr.assignmentName] = evaluate(expr.expr, variables)
-    result = variables[expr.assignmentName]
-  of ekIdent:
-    result = variables[expr.identName]
-  of ekIf:
-    if expr.ifCondition.evaluate(variables) != 0:
-      result = evaluate(expr.ifThenClause, variables)
+  of akAssignment:
+    variables[ast.assignmentName] = evaluate(ast.ast, variables)
+    result = variables[ast.assignmentName]
+  of akIdent:
+    result = variables[ast.identName]
+  of akIf:
+    if ast.ifCondition.evaluate(variables) != 0:
+      result = evaluate(ast.ifThenClause, variables)
     else:
-      result = evaluate(expr.ifElseClause, variables)
-  of ekWhile:
-    while expr.whileCondition.evaluate(variables) != 0:
-      for body in expr.whileBodies:
+      result = evaluate(ast.ifElseClause, variables)
+  of akWhile:
+    while ast.whileCondition.evaluate(variables) != 0:
+      for body in ast.whileBodies:
         discard evaluate(body, variables)
     # todo: return none[int]()
     result = -1 
-  of ekProgram:
-    for program in expr.programs:
+  of akProgram:
+    for program in ast.programs:
       result = evaluate(program, variables)
+  of akFunc:
+    discard
 
-proc evaluate* (expr: AST): int =
+proc evaluate* (ast: AST): int =
   var variables = initTable[string, int]()
-  result = evaluate(expr, variables)
+  result = evaluate(ast, variables)
