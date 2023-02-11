@@ -40,6 +40,11 @@ proc evaluate* (expr: Expr, variables: var Table[string, int]): int =
     result = variables[expr.assignmentName]
   of ekIdent:
     result = variables[expr.identName]
+  of ekIf:
+    if expr.condition.evaluate(variables) != 0:
+      result = evaluate(expr.thenClause, variables)
+    else:
+      result = evaluate(expr.elseClause, variables)
 
 proc evaluate* (expr: Expr): int =
   var variables = initTable[string, int]()

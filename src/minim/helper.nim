@@ -35,3 +35,6 @@ proc tId* (name: string): Expr =
 
 proc tSeq* (bodies: varargs[Expr]): Expr =
   result = exprSeq(@bodies)
+
+proc tIf* (condition, then, els: Expr): Expr =
+  result = exprIf(condition, then, els)

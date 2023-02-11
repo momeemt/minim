@@ -5,6 +5,7 @@ type
     ekAssignment
     ekIdent
     ekSeq
+    ekIf
 
   Expr* = ref ExprObj
 
@@ -23,6 +24,10 @@ type
       identName*: string
     of ekSeq:
       bodies*: seq[Expr]
+    of ekIf:
+      condition*: Expr
+      thenClause*: Expr
+      elseClause*: Expr
 
 proc exprBinary* (op: string, lhs, rhs: Expr): Expr =
   result = Expr(kind: ekBinary)
@@ -46,3 +51,9 @@ proc exprIdent* (name: string): Expr =
 proc exprSeq* (bodies: seq[Expr]): Expr =
   result = Expr(kind: ekSeq)
   result[].bodies = bodies
+
+proc exprIf* (condition, then, els: Expr): Expr =
+  result = Expr(kind: ekIf)
+  result[].condition = condition
+  result[].thenClause = then
+  result[].elseClause = els
