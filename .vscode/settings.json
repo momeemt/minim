@@ -1,10 +1,10 @@
 {
-    "nim.project": [],
-    "nim.test-project": "",
+    "files.autoSave": "afterDelay",
     "nim.buildOnSave": true,
     "nim.buildCommand": "c",
     "nim.lintOnSave": true,
-    "nim.logNimsuggest": false,
+    "nim.logNimsuggest": true,
+    "nim.nimprettyIndent": 2,
     "[nim]": {
         "editor.tabSize": 2,
         "editor.insertSpaces": true
