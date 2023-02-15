@@ -11,6 +11,8 @@ suite "test functions":
   add(1, 2) == 3
   """:
     check tProgram(
-      tFunc("add", @["a", "b"], tAdd(tId("a"), tId("b"))),
+      @[
+        tFunc("add", @["a", "b"], tAdd(tId("a"), tId("b")))
+      ],
       tCall("add", tInt(1), tInt(2))
     ).evaluate() == 3

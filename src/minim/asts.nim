@@ -37,6 +37,7 @@ type
       whileBodies*: seq[AST]
     of akProgram:
       programs*: seq[AST]
+      functions*: seq[AST]
     of akFunc:
       funcName*: string
       funcParams*: seq[string]
@@ -79,9 +80,10 @@ proc astWhile* (condition: AST, bodies: seq[AST]): AST =
   result[].whileCondition = condition
   result[].whileBodies = bodies
 
-proc astProgram* (programs: seq[AST]): AST =
+proc astProgram* (functions: seq[AST], programs: seq[AST]): AST =
   result = AST(kind: akProgram)
   result[].programs = programs
+  result[].functions = functions
 
 proc astFunc* (name: string, params: seq[string], body: AST): AST =
   result = AST(kind: akFunc)

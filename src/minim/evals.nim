@@ -2,6 +2,9 @@ import asts
 
 import std/tables
 
+type
+  CannotDefineFunctionInBodyError* = object of ValueError
+
 proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Table[string, AST]): int =
   case ast.kind
   of akBinary:
@@ -48,11 +51,10 @@ proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Tabl
     # todo: return none[int]()
     result = -1 
   of akProgram:
+    for function in ast.functions:
+      functions[function.funcName] = function
     for program in ast.programs:
       result = evaluate(program, variables, functions)
-  of akFunc:
-    functions[ast.funcName] = ast
-    result = -1
   of akCall:
     let
       fn = functions[ast.callName]
@@ -67,6 +69,8 @@ proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Tabl
         i += 1
     echo newVariables
     result = evaluate(fn.funcBody, newVariables, functions)
+  of akFunc:
+    raise newException(CannotDefineFunctionInBodyError, "body内に関数定義を置くことはできません")
 
 proc evaluate* (ast: AST): int =
   var

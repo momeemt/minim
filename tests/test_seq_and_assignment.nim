@@ -28,6 +28,7 @@ suite "test while":
     i
   """:
     check tProgram(
+      @[],
       tAssign("i", tInt(0)),
       tWhile(
         tLt(tId("i"), tInt(10)),

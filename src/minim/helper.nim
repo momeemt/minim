@@ -42,8 +42,8 @@ proc tIf* (condition, then, els: AST): AST =
 proc tWhile* (condition: AST, bodies: varargs[AST]): AST =
   result = astWhile(condition, @bodies)
 
-proc tProgram* (bodies: varargs[AST]): AST =
-  result = astSeq(@bodies)
+proc tProgram* (functions: seq[AST], bodies: varargs[AST]): AST =
+  result = astProgram(functions, @bodies)
 
 proc tFunc* (name: string, params: seq[string], body: AST): AST =
   result = astFunc(name, params, body)
