@@ -12,3 +12,4 @@ bin           = @["minim"]
 
 requires "nim >= 1.6.10"
 requires "fusion == 1.2"
+requires "cligen == 1.5.37"
