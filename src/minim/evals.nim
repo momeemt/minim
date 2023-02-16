@@ -17,6 +17,8 @@ proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Tabl
       result = evaluate(ast.lhs, variables, functions) * evaluate(ast.rhs, variables, functions)
     of "/":
       result = evaluate(ast.lhs, variables, functions) div evaluate(ast.rhs, variables, functions)
+    of "%":
+      result = evaluate(ast.lhs, variables, functions) mod evaluate(ast.rhs, variables, functions)
     of "<":
       result = int(evaluate(ast.lhs, variables, functions) < evaluate(ast.rhs, variables, functions))
     of ">":

@@ -12,6 +12,9 @@ proc tMul* (a, b: AST): AST =
 proc tDiv* (a, b: AST): AST = 
   result = astBinary("/", a, b)
 
+proc tMod* (a, b: AST): AST =
+  result = astBinary("%", a, b)
+
 proc tInt* (value: int): AST = 
   result = astInt(value)
 

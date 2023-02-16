@@ -14,7 +14,7 @@ type
     value*: string
 
 const
-  MinimOperators* = @["<=", "<", ">=", ">", "=", "+", "-", "*", "/", ",", "(", ")", "{", "}"]
+  MinimOperators* = @["<=", "<", ">=", ">", "=", "+", "-", "*", "/", "%", ",", "(", ")", "{", "}"]
   MinimKeywords* = @["if", "else", "while", "function"]
   Digits* = Digits.toSeq.map(d => $d)
   Whitespaces* = Whitespace.toSeq.map(w => $w)

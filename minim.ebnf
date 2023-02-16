@@ -8,6 +8,6 @@ call       = ident "(" (expr ("," expr)*)? ")";
 assignment = ident "=" expr;
 relational = add ("<" add | "<=" add | ">" add | ">=" add)*;
 add        = mul ("+" mul | "-" mul)*;
-mul        = unary ("*" unary | "/" unary)*;
+mul        = unary ("*" unary | "/" unary | "%" unary)*;
 unary      = ("+" | "-")? primary;
 primary    = NUMBER | ident | "(" expr ")";

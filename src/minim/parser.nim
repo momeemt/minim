@@ -315,7 +315,7 @@ proc parseMul (tokens: seq[MinimToken]): Option[ParsedContext] =
           else:
             return none()
   while true:
-    if tokens.check(["*", "/"]):
+    if tokens.check(["*", "/", "%"]):
       let
         op = tokens.pop().value
         primary = if Some(@res) ?= parseUnary(tokens):
