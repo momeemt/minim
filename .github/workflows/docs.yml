@@ -1,0 +1,24 @@
+name: docs
+on:
+  push:
+    - main
+
+jobs:
+  docs:
+    env:
+      nim-version: 1.6.10
+      nim-src: src/minim.nim
+      deploy-dir: .gh-pages
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: ${{ env.nim-version }}
+      - run: nimble doc --index:on --project --out:${{ env.deploy-dir }} {{ env.nim-src }}
+      - name: Deploy documents
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.deploy-dir }}
