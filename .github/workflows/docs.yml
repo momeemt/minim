@@ -17,7 +17,8 @@ jobs:
       - uses: jiro4989/setup-nim-action@v1
         with:
           nim-version: ${{ env.nim-version }}
-      - run: nimble doc --index:on --project --out:${{ env.deploy-dir }} ${{ env.nim-src }}
+      - name: Generate Documents
+        run: nimble doc --index:on -y --project --out:${{ env.deploy-dir }} ${{ env.nim-src }}
       - name: Deploy documents
         uses: peaceiris/actions-gh-pages@v3
         with:
