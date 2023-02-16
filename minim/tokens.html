@@ -116,7 +116,7 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#CloseableTokens"
     title="CloseableTokens = [&quot;\t&quot;, &quot;\n&quot;, &quot;\v&quot;, &quot;\f&quot;, &quot;\r&quot;, &quot; &quot;, &quot;&lt;=&quot;, &quot;&lt;&quot;, &quot;&gt;=&quot;, &quot;&gt;&quot;, &quot;=&quot;,
-                   &quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;, &quot;,&quot;, &quot;(&quot;, &quot;)&quot;, &quot;{&quot;, &quot;}&quot;]">CloseableTokens</a></li>
+                   &quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;, &quot;%&quot;, &quot;,&quot;, &quot;(&quot;, &quot;)&quot;, &quot;{&quot;, &quot;}&quot;]">CloseableTokens</a></li>
   <li><a class="reference" href="#Digits"
     title="Digits = [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;]">Digits</a></li>
   <li><a class="reference" href="#Idents"
@@ -134,8 +134,8 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#MinimKeywords"
     title="MinimKeywords = [&quot;if&quot;, &quot;else&quot;, &quot;while&quot;, &quot;function&quot;]">MinimKeywords</a></li>
   <li><a class="reference" href="#MinimOperators"
-    title="MinimOperators = [&quot;&lt;=&quot;, &quot;&lt;&quot;, &quot;&gt;=&quot;, &quot;&gt;&quot;, &quot;=&quot;, &quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;, &quot;,&quot;, &quot;(&quot;, &quot;)&quot;,
-                  &quot;{&quot;, &quot;}&quot;]">MinimOperators</a></li>
+    title="MinimOperators = [&quot;&lt;=&quot;, &quot;&lt;&quot;, &quot;&gt;=&quot;, &quot;&gt;&quot;, &quot;=&quot;, &quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;, &quot;%&quot;, &quot;,&quot;, &quot;(&quot;,
+                  &quot;)&quot;, &quot;{&quot;, &quot;}&quot;]">MinimOperators</a></li>
   <li><a class="reference" href="#Whitespaces"
     title="Whitespaces = [&quot;\t&quot;, &quot;\n&quot;, &quot;\v&quot;, &quot;\f&quot;, &quot;\r&quot;, &quot; &quot;]">Whitespaces</a></li>
 
@@ -206,7 +206,7 @@ window.addEventListener('DOMContentLoaded', main);
 <dl class="item">
 <div id="CloseableTokens">
 <dt><pre><a href="tokens.html#CloseableTokens"><span class="Identifier">CloseableTokens</span></a> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;\t&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;\n&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;\v&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;\f&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;\r&quot;</span><span class="Other">,</span> <span class="StringLit">&quot; &quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&lt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&lt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;=&quot;</span><span class="Other">,</span>
-                   <span class="StringLit">&quot;+&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;-&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;*&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;/&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;,&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;(&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;)&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;{&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;}&quot;</span><span class="Other">]</span></pre></dt>
+                   <span class="StringLit">&quot;+&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;-&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;*&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;/&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;%&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;,&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;(&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;)&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;{&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;}&quot;</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
@@ -254,8 +254,8 @@ window.addEventListener('DOMContentLoaded', main);
 </dd>
 </div>
 <div id="MinimOperators">
-<dt><pre><a href="tokens.html#MinimOperators"><span class="Identifier">MinimOperators</span></a> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;&lt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&lt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;+&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;-&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;*&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;/&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;,&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;(&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;)&quot;</span><span class="Other">,</span>
-                  <span class="StringLit">&quot;{&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;}&quot;</span><span class="Other">]</span></pre></dt>
+<dt><pre><a href="tokens.html#MinimOperators"><span class="Identifier">MinimOperators</span></a> <span class="Other">=</span> <span class="Other">[</span><span class="StringLit">&quot;&lt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&lt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;&gt;&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;=&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;+&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;-&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;*&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;/&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;%&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;,&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;(&quot;</span><span class="Other">,</span>
+                  <span class="StringLit">&quot;)&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;{&quot;</span><span class="Other">,</span> <span class="StringLit">&quot;}&quot;</span><span class="Other">]</span></pre></dt>
 <dd>
 
 
@@ -317,7 +317,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-16 12:10:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-16 12:28:36 UTC</small>
       </div>
     </div>
   </div>
