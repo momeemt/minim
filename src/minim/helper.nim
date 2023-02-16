@@ -39,8 +39,8 @@ proc tSeq* (bodies: varargs[AST]): AST =
 proc tIf* (condition, then, els: AST): AST =
   result = astIf(condition, then, els)
 
-proc tWhile* (condition: AST, bodies: varargs[AST]): AST =
-  result = astWhile(condition, @bodies)
+proc tWhile* (condition: AST, body: AST): AST =
+  result = astWhile(condition, body)
 
 proc tProgram* (functions: seq[AST], bodies: varargs[AST]): AST =
   result = astProgram(functions, @bodies)

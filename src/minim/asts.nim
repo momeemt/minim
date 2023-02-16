@@ -34,7 +34,7 @@ type
       ifElseClause*: AST
     of akWhile:
       whileCondition*: AST
-      whileBodies*: seq[AST]
+      whileBody*: AST
     of akProgram:
       programs*: seq[AST]
       functions*: seq[AST]
@@ -75,10 +75,10 @@ proc astIf* (condition, then, els: AST): AST =
   result[].ifThenClause = then
   result[].ifElseClause = els
 
-proc astWhile* (condition: AST, bodies: seq[AST]): AST =
+proc astWhile* (condition: AST, body: AST): AST =
   result = AST(kind: akWhile)
   result[].whileCondition = condition
-  result[].whileBodies = bodies
+  result[].whileBody = body
 
 proc astProgram* (functions: seq[AST], programs: seq[AST]): AST =
   result = AST(kind: akProgram)

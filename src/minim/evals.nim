@@ -46,10 +46,7 @@ proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Tabl
       result = evaluate(ast.ifElseClause, variables, functions)
   of akWhile:
     while ast.whileCondition.evaluate(variables, functions) != 0:
-      for body in ast.whileBodies:
-        discard evaluate(body, variables, functions)
-    # todo: return none[int]()
-    result = -1 
+      result = evaluate(ast.whileBody, variables, functions)
   of akProgram:
     for function in ast.functions:
       functions[function.funcName] = function
@@ -67,7 +64,6 @@ proc evaluate* (ast: AST, variables: var Table[string, int], functions: var Tabl
       for arg in args:
         newVariables[fn.funcParams[i]] = arg
         i += 1
-    echo newVariables
     result = evaluate(fn.funcBody, newVariables, functions)
   of akFunc:
     raise newException(CannotDefineFunctionInBodyError, "body内に関数定義を置くことはできません")
