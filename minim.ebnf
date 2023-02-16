@@ -1,0 +1,10 @@
+function  = "function" ident "(" (ident ("," ident)*)? ")" seq;
+if        = "if" "(" expr ")" expr "else" expr;
+while     = "while" "(" expr ")" seq;
+seq       = "{" expr* "}";
+expr      = formula;
+formula   = add | sub | mul | div | NUMBER;
+add       = formula "+" formula;
+sub       = formula "-" formula;
+mul       = formula "*" formula;
+div       = formula "/" formula;
