@@ -1,4 +1,4 @@
-name: build
+name: ci
 on:
   push:
     paths:
@@ -13,7 +13,7 @@ jobs:
           - '1.6.x'
           - 'stable'
           - 'devel'
-    name: Nim ${{ matrix.nim }} sample
+    name: Nim ${{ matrix.nim }} CI
     steps:
       - uses: actions/checkout@v3
       - name: Setup nim
@@ -21,5 +21,4 @@ jobs:
         with:
           nim-version: ${{ matrix.nim }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: nimble build -Y
       - run: nimble test -Y
