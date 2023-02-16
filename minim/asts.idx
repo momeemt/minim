@@ -1,0 +1,23 @@
+akBinary	minim/asts.html#akBinary	ASTKind.akBinary	
+akInt	minim/asts.html#akInt	ASTKind.akInt	
+akAssignment	minim/asts.html#akAssignment	ASTKind.akAssignment	
+akIdent	minim/asts.html#akIdent	ASTKind.akIdent	
+akSeq	minim/asts.html#akSeq	ASTKind.akSeq	
+akIf	minim/asts.html#akIf	ASTKind.akIf	
+akWhile	minim/asts.html#akWhile	ASTKind.akWhile	
+akProgram	minim/asts.html#akProgram	ASTKind.akProgram	
+akFunc	minim/asts.html#akFunc	ASTKind.akFunc	
+akCall	minim/asts.html#akCall	ASTKind.akCall	
+ASTKind	minim/asts.html#ASTKind	asts: ASTKind	
+AST	minim/asts.html#AST	asts: AST	
+ASTObj	minim/asts.html#ASTObj	asts: ASTObj	
+astBinary	minim/asts.html#astBinary,string,AST,AST	asts: astBinary(op: string; lhs, rhs: AST): AST	
+astInt	minim/asts.html#astInt,int	asts: astInt(value: int): AST	
+astAssignment	minim/asts.html#astAssignment,string,AST	asts: astAssignment(name: string; ast: AST): AST	
+astIdent	minim/asts.html#astIdent,string	asts: astIdent(name: string): AST	
+astSeq	minim/asts.html#astSeq,seq[AST]	asts: astSeq(bodies: seq[AST]): AST	
+astIf	minim/asts.html#astIf,AST,AST,AST	asts: astIf(condition, then, els: AST): AST	
+astWhile	minim/asts.html#astWhile,AST,AST	asts: astWhile(condition: AST; body: AST): AST	
+astProgram	minim/asts.html#astProgram,seq[AST],seq[AST]	asts: astProgram(functions: seq[AST]; programs: seq[AST]): AST	
+astFunc	minim/asts.html#astFunc,string,seq[string],AST	asts: astFunc(name: string; params: seq[string]; body: AST): AST	
+astCall	minim/asts.html#astCall,string,seq[AST]	asts: astCall(name: string; args: seq[AST]): AST	

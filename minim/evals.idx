@@ -1,0 +1,3 @@
+CannotDefineFunctionInBodyError	minim/evals.html#CannotDefineFunctionInBodyError	evals: CannotDefineFunctionInBodyError	
+evaluate	minim/evals.html#evaluate,AST,Table[string,int],Table[string,AST]	evals: evaluate(ast: AST; variables: var Table[string, int];\n         functions: var Table[string, AST]): int	
+evaluate	minim/evals.html#evaluate,AST	evals: evaluate(ast: AST): int	

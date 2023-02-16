@@ -1,0 +1,7 @@
+separate	minim/tokenizer.html#separate,string,int	tokenizer: separate(program: string; len: int): Option[SeparatedString]	
+consumeKeyword	minim/tokenizer.html#consumeKeyword,string,string	tokenizer: consumeKeyword(program: var string; token: string): bool	
+consumeOperator	minim/tokenizer.html#consumeOperator,string,string	tokenizer: consumeOperator(program: var string; token: string): bool	
+consumeNumber	minim/tokenizer.html#consumeNumber,string	tokenizer: consumeNumber(program: var string): (bool, string)	
+consumeIdent	minim/tokenizer.html#consumeIdent,string	tokenizer: consumeIdent(program: var string): (bool, string)	
+skipWhitespace	minim/tokenizer.html#skipWhitespace,string	tokenizer: skipWhitespace(program: var string): bool	
+tokenize	minim/tokenizer.html#tokenize,string	tokenizer: tokenize(program: string): seq[MinimToken]	

@@ -1,0 +1,1 @@
+parse	minim/parser.html#parse,seq[MinimToken]	parser: parse(tokens: seq[MinimToken]): AST	
