@@ -48,6 +48,15 @@ suite "test division":
     check tDiv(tInt(6), tInt(2)).evaluate() == 3
     check run("6 / 2") == 3
 
+suite "test modulo":
+  test "4 % 2 == 0":
+    check tMod(tInt(4), tInt(2)).evaluate() == 0
+    check run("4 % 2") == 0
+
+  test "7 % 5 == 2":
+    check tMod(tInt(7), tInt(5)).evaluate() == 2
+    check run("7 % 5") == 2
+
 suite "test complex expression":
   test "(1 + (2 * 3) - 1) / 2 == 3":
     check tDiv(
