@@ -1,4 +1,6 @@
+import minim/tokenizer
+import minim/parser
 import minim/evals
 
-when isMainModule:
-  echo "Hello, minim!"
+proc run* (program: string): int =
+  result = program.tokenize().parse().evaluate()
